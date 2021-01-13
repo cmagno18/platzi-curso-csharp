@@ -28,7 +28,30 @@ namespace CoreEscuela
 
         private void CargarEvaluaciones()
         {
-            throw new NotImplementedException();
+            var lista = new List<Evaluación>();
+            foreach (var curso in Escuela.Cursos)
+            {
+                foreach (var asignatura in curso.Asignaturas)
+                {
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        var rnd = new Random(System.Environment.TickCount);
+
+                        for (int i = 0; i <5; i++)
+                        {
+                            var evaluacion = new Evaluación()
+                            {
+                                Nombre = $"{asignatura.Nombre} EV # { i + 1 }",
+                                Alumno = alumno,
+                                Asignatura = asignatura,
+                                Nota = (float)(5 * rnd.NextDouble())
+                            };
+
+                            lista.Add(evaluacion);
+                        }
+                    }
+                }
+            }
         }
 
         private void CargarAsignaturas()
@@ -62,11 +85,11 @@ namespace CoreEscuela
         private void CargarCursos()
         {
             Escuela.Cursos = new List<Curso>(){
-                        new Curso(){ Nombre = "101", Jornada = TiposJornada.Mañana },
-                        new Curso() {Nombre = "201", Jornada = TiposJornada.Mañana},
-                        new Curso{Nombre = "301", Jornada = TiposJornada.Mañana},
-                        new Curso(){ Nombre = "401", Jornada = TiposJornada.Tarde },
-                        new Curso() {Nombre = "501", Jornada = TiposJornada.Tarde},
+                        new Curso() { Nombre = "101", Jornada = TiposJornada.Mañana },
+                        new Curso() { Nombre = "201", Jornada = TiposJornada.Mañana },
+                        new Curso() { Nombre = "301", Jornada = TiposJornada.Mañana },
+                        new Curso() { Nombre = "401", Jornada = TiposJornada.Tarde },
+                        new Curso() { Nombre = "501", Jornada = TiposJornada.Tarde },
             };
             
             Random rnd = new Random();
